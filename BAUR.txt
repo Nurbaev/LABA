@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title> Lab-1 </title>
+</head>
+
+<body>
+
+<h3>Open console</h3>
+
+<script type="text/javascript">
+
+function Admin(name){
+this.name = name;
+
+
+
+function Student(name,id){
+this.name = name;
+this.id=id;
+this.marks = [];
+}
+
+
+
+
+
+
+
+function Group(name,shifr){
+  this.groupname = name;
+  this.shifr = shifr;
+  this.groupStudents = [];
+  this.kol = 0;
+
+}
+
+this.createGroup = function(name,shifr){
+  this.group = new Group(name,shifr);
+}
+
+this.createStudent = function(name,id){
+  var student = new Student(name,id);
+  this.group.groupStudents.push(student);
+  this.group.kol +=1;
+};
+
+this.addTeacherToGroup = function(teacher ) {
+ this.group.groupTeacher=teacher;
+}
+
+}//end admin Закончился класс админ
+
+
+
+function Teacher(name){///нужно добавлять учителя после создания админа
+this.name = name;
+
+	this.addMarkToStudentByID = function(id,new_mark) 
+	{
+		for (var i = 0; i < admin.group.kol; i++) 
+		{
+		if (admin.group.groupStudents[i].id === id)
+			{
+			admin.group.groupStudents[i].marks.push(new_mark);
+			}
+		}
+	
+	}
+
+}	
+
+var admin = new Admin("Dennis");
+console.log(admin.name);
+
+var teacher = new Teacher("Natalya_Fedorovna");
+
+console.log(teacher.name);
+
+admin.createGroup("VTiPO","5B070400");
+admin.addTeacherToGroup(teacher);
+console.log(admin.group);
+
+admin.createStudent("Baurjan",1431186);
+admin.createStudent("Vadim",1431185);
+admin.createStudent("Miras",1431187);
+console.log(admin.group.groupStudents);
+
+console.log(admin.group);
+
+teacher.addMarkToStudentByID(1431187,5);
+//admin.addStudentToGroupByID(1431187);
+console.log(admin.group.groupStudents[2].marks);
+
+</script>
+</body>
+</html>
